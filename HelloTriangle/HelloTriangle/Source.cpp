@@ -28,7 +28,7 @@ int setupShader();
 int setupGeometry();
 
 // Dimensões da janela (pode ser alterado em tempo de execução)
-const GLuint WIDTH = 800, HEIGHT = 600;
+const GLuint WIDTH = 1000, HEIGHT = 800;
 
 // Código fonte do Vertex Shader (em GLSL): ainda hardcoded
 const GLchar* vertexShaderSource = "#version 450\n"
@@ -116,7 +116,7 @@ int main()
 		glfwPollEvents();
 
 		// Limpa o buffer de cor
-		glClearColor(0.8f, 0.8f, 0.8f, 1.0f); //cor de fundo
+		glClearColor(0.0f, 0.0f, 0.0f, 0.0f); //cor de fundo
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		glLineWidth(10);
@@ -124,15 +124,16 @@ int main()
 
 		// Chamada de desenho - drawcall
 		// Poligono Preenchido - GL_TRIANGLES
-		glUniform4f(colorLoc, 0.0f, 0.0f, 1.0f, 1.0f); //enviando cor para variável uniform inputColor
+		glUniform4f(colorLoc, 1.0f, 0.0f, 0.5f, 0.0f); //enviando cor para variável uniform inputColor
 		glBindVertexArray(VAO);
-		glDrawArrays(GL_TRIANGLES, 0, 3);
+		glDrawArrays(GL_TRIANGLES, 0, 6);
 
 		// Chamada de desenho - drawcall
 		// CONTORNO - GL_LINE_LOOP
 		// PONTOS - GL_POINTS
 		glUniform4f(colorLoc, 1.0f, 0.0f, 1.0f, 1.0f); //enviando cor para variável uniform inputColor
-		glDrawArrays(GL_POINTS, 0, 3);
+		//glDrawArrays(GL_POINTS, 0, 3);
+		//glDrawArrays(GL_LINE_LOOP, 0, 3);
 		glBindVertexArray(0);
 
 		// Troca os buffers da tela
@@ -220,6 +221,23 @@ int setupGeometry()
 		 //outro triangulo vai aqui
 	};
 
+	GLfloat vertices3[] = {
+		 1.5f,  1.5f, 1.0f, 
+		 0.5f, -0.5f, 0.0f, 
+		-0.5f,  0.5f, 0.0f,   
+	
+		 2.5f, -2.5f, 2.0f, 
+		-0.5f, -0.5f, 0.0f,  
+		-0.5f,  0.5f, 0.0f  
+	};
+
+	GLfloat vertices2[] = {
+	 0.5, 0.5, 0.0,
+	 -0.5, 0.5, 0.0,
+	 0.0, -0.5, 0.0,
+	 //outro triangulo vai aqui
+	};
+
 	GLuint VBO, VAO;
 
 	//Geração do identificador do VBO
@@ -227,7 +245,7 @@ int setupGeometry()
 	//Faz a conexão (vincula) do buffer como um buffer de array
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	//Envia os dados do array de floats para o buffer da OpenGl
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices3), vertices3, GL_STATIC_DRAW);
 
 	//Geração do identificador do VAO (Vertex Array Object)
 	glGenVertexArrays(1, &VAO);
