@@ -124,17 +124,18 @@ int main()
 
 		// Chamada de desenho - drawcall
 		// Poligono Preenchido - GL_TRIANGLES
-		glUniform4f(colorLoc, 1.0f, 0.0f, 0.5f, 0.0f); //enviando cor para variável uniform inputColor
+		glUniform4f(colorLoc, 1.0f, 8.0f, 0.5f, 0.0f); //enviando cor para variável uniform inputColor
 		glBindVertexArray(VAO);
 		glDrawArrays(GL_TRIANGLES, 0, 6);
 
 		// Chamada de desenho - drawcall
 		// CONTORNO - GL_LINE_LOOP
 		// PONTOS - GL_POINTS
-		glUniform4f(colorLoc, 1.0f, 0.0f, 1.0f, 1.0f); //enviando cor para variável uniform inputColor
-		//glDrawArrays(GL_POINTS, 0, 3);
+		glUniform4f(colorLoc, 0.8, 0.8, 0.8, 1.0); //enviando cor para variável uniform inputColor
+		glDrawArrays(GL_POINTS, 3, 6);
+		glDrawArrays(GL_POINTS, 0, 3);
 		//glDrawArrays(GL_LINE_LOOP, 0, 3);
-		glBindVertexArray(0);
+		//glBindVertexArray(0);
 
 		// Troca os buffers da tela
 		glfwSwapBuffers(window);
@@ -214,29 +215,19 @@ int setupGeometry()
 	// sequencial, já visando mandar para o VBO (Vertex Buffer Objects)
 	// Cada atributo do vértice (coordenada, cores, coordenadas de textura, normal, etc)
 	// Pode ser arazenado em um VBO único ou em VBOs separados
+
 	GLfloat vertices[] = {
-		-0.5, -0.5, 0.0,
-		 0.5, -0.5, 0.0,
-		 0.0, 0.5, 0.0,
-		 //outro triangulo vai aqui
+// primeiro triangulo
+		 -0.5, 0.8, 0.0,
+		 -0.3, 0.5, 0.0,
+		 -0.7, 0.5, 0.0,
+
+// segundo triangulo
+		  0.5, 0.8, 0.0,
+		  0.3, 0.5, 0.0,
+		  0.7, 0.5, 0.0,
 	};
 
-	GLfloat vertices3[] = {
-		 1.5f,  1.5f, 1.0f, 
-		 0.5f, -0.5f, 0.0f, 
-		-0.5f,  0.5f, 0.0f,   
-	
-		 2.5f, -2.5f, 2.0f, 
-		-0.5f, -0.5f, 0.0f,  
-		-0.5f,  0.5f, 0.0f  
-	};
-
-	GLfloat vertices2[] = {
-	 0.5, 0.5, 0.0,
-	 -0.5, 0.5, 0.0,
-	 0.0, -0.5, 0.0,
-	 //outro triangulo vai aqui
-	};
 
 	GLuint VBO, VAO;
 
@@ -245,7 +236,7 @@ int setupGeometry()
 	//Faz a conexão (vincula) do buffer como um buffer de array
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	//Envia os dados do array de floats para o buffer da OpenGl
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices3), vertices3, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
 	//Geração do identificador do VAO (Vertex Array Object)
 	glGenVertexArrays(1, &VAO);
@@ -259,7 +250,7 @@ int setupGeometry()
 	// Se está normalizado (entre zero e um)
 	// Tamanho em bytes 
 	// Deslocamento a partir do byte zero 
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
+	glVertexAttribPointer(-0.5, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
 	glEnableVertexAttribArray(0);
 
 	// Observe que isso é permitido, a chamada para glVertexAttribPointer registrou o VBO como o objeto de buffer de vértice 
