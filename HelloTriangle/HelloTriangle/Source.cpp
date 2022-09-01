@@ -132,10 +132,23 @@ int main()
 		// CONTORNO - GL_LINE_LOOP
 		// PONTOS - GL_POINTS
 		glUniform4f(colorLoc, 0.8, 0.8, 0.8, 1.0); //enviando cor para variável uniform inputColor
-		glDrawArrays(GL_POINTS, 3, 6);
-		glDrawArrays(GL_POINTS, 0, 3);
-		//glDrawArrays(GL_LINE_LOOP, 0, 3);
-		//glBindVertexArray(0);
+		// 5.a)
+		//	Somente executar!
+
+		// 5.b) 
+		//	glDrawArrays(GL_LINE_LOOP, 0, 3);
+		//	glDrawArrays(GL_LINE_LOOP, 3, 3);
+		
+		// 5.c)
+		//	glDrawArrays(GL_POINTS, 0, 3);
+		//	glDrawArrays(GL_POINTS, 3, 3);
+
+		// 5.d)
+		//	glDrawArrays(GL_LINE_LOOP, 0, 3);
+		//	glDrawArrays(GL_LINE_LOOP, 3, 3);
+		//	glDrawArrays(GL_POINTS, 0, 3);
+		//	glDrawArrays(GL_POINTS, 3, 3);
+		glBindVertexArray(0);
 
 		// Troca os buffers da tela
 		glfwSwapBuffers(window);
@@ -218,14 +231,14 @@ int setupGeometry()
 
 	GLfloat vertices[] = {
 // primeiro triangulo
-		 -0.5, 0.8, 0.0,
-		 -0.3, 0.5, 0.0,
-		 -0.7, 0.5, 0.0,
+		 -0.5f, 0.8f, 0.0f,
+		 -0.3f, 0.5f, 0.0f,
+		 -0.7f, 0.5f, 0.0f,
 
 // segundo triangulo
-		  0.5, 0.8, 0.0,
-		  0.3, 0.5, 0.0,
-		  0.7, 0.5, 0.0,
+		  0.5f, 0.8f, 0.0f,
+		  0.3f, 0.5f, 0.0f,
+		  0.7f, 0.5f, 0.0f,
 	};
 
 
@@ -250,7 +263,7 @@ int setupGeometry()
 	// Se está normalizado (entre zero e um)
 	// Tamanho em bytes 
 	// Deslocamento a partir do byte zero 
-	glVertexAttribPointer(-0.5, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
 	glEnableVertexAttribArray(0);
 
 	// Observe que isso é permitido, a chamada para glVertexAttribPointer registrou o VBO como o objeto de buffer de vértice 
