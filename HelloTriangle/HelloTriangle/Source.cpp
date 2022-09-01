@@ -168,22 +168,6 @@ int main()
 		default:
 			break;
 		}
-		// Lista 1 - 5.a)
-		//	Somente executar!
-
-		// Lista 1 - 5.b) 
-		//	glDrawArrays(GL_LINE_LOOP, 0, 3);
-		//	glDrawArrays(GL_LINE_LOOP, 3, 3);
-		
-		// Lista 1 - 5.c)
-		//	glDrawArrays(GL_POINTS, 0, 3);
-		//	glDrawArrays(GL_POINTS, 3, 3);
-
-		// Lista 1 - 5.d)
-		//	glDrawArrays(GL_LINE_LOOP, 0, 3);
-		//	glDrawArrays(GL_LINE_LOOP, 3, 3);
-		//	glDrawArrays(GL_POINTS, 0, 3);
-		//	glDrawArrays(GL_POINTS, 3, 3);
 		glBindVertexArray(0);
 
 		// Troca os buffers da tela
