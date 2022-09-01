@@ -62,10 +62,6 @@ int main()
 	//glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
 	//glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	//Essencial para computadores da Apple
-//#ifdef __APPLE__
-//	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-//#endif
 
 	// Criação da janela GLFW
 	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Ola Triangulo! - Guilherme Rabelo", nullptr, nullptr);
@@ -84,8 +80,19 @@ int main()
 	// Obtendo as informações de versão
 	const GLubyte* renderer = glGetString(GL_RENDERER); /* get renderer string */
 	const GLubyte* version = glGetString(GL_VERSION); /* version as a string */
+	int opt;
+
 	cout << "Renderer: " << renderer << endl;
 	cout << "OpenGL version supported " << version << endl;
+
+	cout << "Menu" << endl;
+	cout << "1 - Apenas com o poligono preenchido" << endl;
+	cout << "2 - Apenas com contorno" << endl;
+	cout << "3 - Apenas com pontos" << endl;
+	cout << "4 - Com as 3 formas de desenho juntas" << endl;
+	cout << "Digite o que deseja ver:";
+
+	cin >> opt;
 
 	// Definindo as dimensões da viewport com as mesmas dimensões da janela da aplicação
 	int width, height;
@@ -105,8 +112,17 @@ int main()
 	// que não está nos buffers
 	GLint colorLoc = glGetUniformLocation(shaderID, "inputColor");
 	assert(colorLoc > -1);
-	
+
+	// matriz de projecao
+	//glm::mat4 projection = glm::mat4(1);
+	//	Lista 2.1
+    //projection = glm::ortho(-10.0f, 10.0f, -10.0f, 10.0f, -1.0f, 1.0f)
+	//	Lista 2.2
+	//projection = glm::ortho(0.0f, 800.0f, 600.0f, 0.0f, -1.0f, 1.0f)
+
 	glUseProgram(shaderID);
+
+	//shader.setMat4("projection", glm::value_ptr(projection))
 	
 
 	// Loop da aplicação - "game loop"
@@ -132,18 +148,38 @@ int main()
 		// CONTORNO - GL_LINE_LOOP
 		// PONTOS - GL_POINTS
 		glUniform4f(colorLoc, 0.8, 0.8, 0.8, 1.0); //enviando cor para variável uniform inputColor
-		// 5.a)
+		switch (opt) {
+			case 1:
+				break;
+			case 2:
+				glDrawArrays(GL_LINE_LOOP, 0, 3);
+				glDrawArrays(GL_LINE_LOOP, 3, 3);
+				break;
+			case 3:
+				glDrawArrays(GL_POINTS, 0, 3);
+				glDrawArrays(GL_POINTS, 3, 3);
+				break;
+			case 4:
+				glDrawArrays(GL_LINE_LOOP, 0, 3);
+				glDrawArrays(GL_LINE_LOOP, 3, 3);
+				glDrawArrays(GL_POINTS, 0, 3);
+				glDrawArrays(GL_POINTS, 3, 3);
+				break;
+		default:
+			break;
+		}
+		// Lista 1 - 5.a)
 		//	Somente executar!
 
-		// 5.b) 
+		// Lista 1 - 5.b) 
 		//	glDrawArrays(GL_LINE_LOOP, 0, 3);
 		//	glDrawArrays(GL_LINE_LOOP, 3, 3);
 		
-		// 5.c)
+		// Lista 1 - 5.c)
 		//	glDrawArrays(GL_POINTS, 0, 3);
 		//	glDrawArrays(GL_POINTS, 3, 3);
 
-		// 5.d)
+		// Lista 1 - 5.d)
 		//	glDrawArrays(GL_LINE_LOOP, 0, 3);
 		//	glDrawArrays(GL_LINE_LOOP, 3, 3);
 		//	glDrawArrays(GL_POINTS, 0, 3);
