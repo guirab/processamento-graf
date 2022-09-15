@@ -10,6 +10,7 @@
 #include <iostream>
 #include <string>
 #include <assert.h>
+#include <math.h>
 
 using namespace std;
 
@@ -86,10 +87,11 @@ int main()
 	cout << "OpenGL version supported " << version << endl;
 
 	cout << "Menu" << endl;
-	cout << "1 - Apenas com o poligono preenchido" << endl;
-	cout << "2 - Apenas com contorno" << endl;
-	cout << "3 - Apenas com pontos" << endl;
-	cout << "4 - Com as 3 formas de desenho juntas" << endl;
+	cout << "1 - Triangulo -> Apenas com o poligono preenchido" << endl;
+	cout << "2 - Triangulo -> Apenas com contorno" << endl;
+	cout << "3 - Triangulo -> Apenas com pontos" << endl;
+	cout << "4 - Triangulo -> Com as 3 formas de desenho juntas" << endl;
+	cout << "5 - Círculo";
 	cout << "Digite o que deseja ver:";
 
 	cin >> opt;
@@ -123,7 +125,6 @@ int main()
 	glUseProgram(shaderID);
 
 	//shader.setMat4("projection", glm::value_ptr(projection))
-	
 
 	// Loop da aplicação - "game loop"
 	while (!glfwWindowShouldClose(window))
@@ -164,6 +165,8 @@ int main()
 				glDrawArrays(GL_LINE_LOOP, 3, 3);
 				glDrawArrays(GL_POINTS, 0, 3);
 				glDrawArrays(GL_POINTS, 3, 3);
+				break;
+			case 5:
 				break;
 		default:
 			break;
