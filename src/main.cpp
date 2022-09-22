@@ -12,13 +12,11 @@
 #include <assert.h>
 #include <math.h>
 
-using namespace std;
-
 // GLAD
-#include "include/glad/glad.h"
+#include <glad/glad.h>
 
 // GLFW
-#include "include/GLFW/glfw3.h"
+#include <GLFW/glfw3.h>
 
 
 // Prot�tipo da fun��o de callback de teclado
