@@ -1,23 +1,12 @@
-/* Hello Triangle - c�digo adaptado de https://learnopengl.com/#!Getting-started/Hello-Triangle 
- *
- * Adaptado por Rossana Baptista Queiroz
- * para a disciplina de Processamento Gr�fico - Unisinos
- * Vers�o inicial: 7/4/2017
- * �ltima atualiza��o em 01/08/2022
- *
- */
-
 #include <iostream>
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+
 #include <string>
 #include <assert.h>
 #include <math.h>
 
-// GLAD
-#include <glad/glad.h>
-
-// GLFW
-#include <GLFW/glfw3.h>
-
+using namespace std;
 
 // Prot�tipo da fun��o de callback de teclado
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
@@ -296,3 +285,4 @@ int setupGeometry()
 
 	return VAO;
 }
+
